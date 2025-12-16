@@ -1,0 +1,47 @@
+CREATE DATABASE loja_pascotto;
+
+USE loja_pascotto;
+
+CREATE TABLE funcionarios(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+cargo VARCHAR(255) NOT NULL,
+salario INT NOT NULL
+);
+
+CREATE TABLE categoria(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE fornecedor(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+CNPJ VARCHAR(255),
+telefone VARCHAR(50) NOT NULL,
+CPF VARCHAR(50)
+);
+
+CREATE TABLE produtos(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(255) NOT NULL,
+preco DECIMAL (10,2) NOT NULL,
+quantidade_estoque INT NOT NULL,
+id_fornecedor INT NOT NULL,
+id_categoria INT NOT NULL,
+FOREIGN KEY (id_fornecedor) REFERENCES fornecedor(id),
+FOREIGN KEY (id_categoria) REFERENCES categoria(id)
+);
+
+ALTER TABLE fornecedor ADD email VARCHAR(150);
+ALTER TABLE funcionarios MODIFY salario DECIMAL(10,2);
+ALTER TABLE fornecedor DROP COLUMN CPF;
+
+
+SELECT* FROM funcionarios;
+
+#ALTER TABLE "nome_da_tabela" ADD/MODIFY/DROP COLUMN
+#ALTER TABLE "nome_da_tabela" DROP COLUMN "nome_da_coluna"
+
+
+
